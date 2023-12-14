@@ -2,18 +2,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/domain/repositories/article_repository.dart';
-import 'package:news_app/features/daily_news/domain/use_cases/get_article.dart';
+import 'package:news_app/features/daily_news/domain/use_cases/get_local_article.dart';
 
 class MockArticleRepository extends Mock implements ArticleRepository {}
 
 void main() {
-  late GetArticleUseCase usecase;
+  late GetLocalArticleUseCase usecase;
   late MockArticleRepository mockArticleRepository;
   setUp(() {
     mockArticleRepository = MockArticleRepository();
-    usecase = GetArticleUseCase(mockArticleRepository);
+    usecase = GetLocalArticleUseCase(mockArticleRepository);
   });
-  String section = 'home';
   List<ArticleEntity> articles = [
     ArticleEntity(
       aSection: 'Section',
@@ -27,14 +26,14 @@ void main() {
     )
   ];
   test(
-    'should get articles from remote data source for speccific section',
+    'should get articles from database locally',
     () async {
-      when(() => mockArticleRepository.getArticles('home'))
-          .thenAnswer((_) async => articles);
-      final result = await usecase(params: section);
+      when(() => mockArticleRepository.getSavedArticles())
+          .thenAnswer((_) => articles);
+      final result = usecase();
 
       expect(result, articles);
-      verify(() => mockArticleRepository.getArticles('home'));
+      verify(() => mockArticleRepository.getSavedArticles());
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
