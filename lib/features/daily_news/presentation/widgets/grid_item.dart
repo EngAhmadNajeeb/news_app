@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/presentation/app_confirm_dialog.dart';
 import 'package:news_app/core/presentation/app_network_image.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/presentation/pages/article_details.dart';
@@ -70,12 +71,28 @@ class GridItemWidget extends StatelessWidget {
             Visibility(
               visible: onDelete != null,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AppConfirmDialog(
+                      title: 'Remove article',
+                      description:
+                          'Are you sure you want to remove this article from the archive?',
+                      postiveText: 'Yes',
+                      negativeText: 'No',
+                      onCancel: () => Navigator.pop(context),
+                      onAccept: () {
+                        Navigator.pop(context);
+                        onDelete!();
+                      },
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: EdgeInsets.all(10.r),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Icon(
+                    child:  Icon(
                       Icons.remove_circle_outline_rounded,
                       color: Colors.red,
                     ),

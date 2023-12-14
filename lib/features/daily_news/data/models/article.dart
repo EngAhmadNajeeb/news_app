@@ -1,11 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:news_app/core/util/general_function.dart';
+import 'package:news_app/core/util/json_media_converter.dart';
 import 'package:news_app/features/daily_news/data/models/media.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
-import 'package:news_app/features/daily_news/domain/entities/media.dart';
+import 'package:objectbox/objectbox.dart';
 
-part 'article.g.dart'; 
+part 'article.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(converters: [JsonMediaConverter()])
+@Entity()
 // ignore: must_be_immutable
 class ArticleModel extends ArticleEntity {
   @JsonKey(includeFromJson: false)
@@ -19,7 +22,9 @@ class ArticleModel extends ArticleEntity {
   final DateTime? updatedDate;
   @JsonKey(name: 'published_date')
   final DateTime? publishedDate;
-  List<MediaModel> multimedia = <MediaModel>[];
+  @Backlink()
+  @JsonMediaConverter()
+  ToMany<MediaModel> multimedia = ToMany<MediaModel>();
   ArticleModel({
     this.id = 0,
     this.section = '',
@@ -39,9 +44,9 @@ class ArticleModel extends ArticleEntity {
           aUrl: url,
           aUpdatedAt: updatedDate ?? DateTime.now(),
           aPublishedDate: publishedDate ?? DateTime.now(),
-          aMultimedia:  <MediaEntity>[],
+          aMultimedia: GenFunc.fromToManyToListMediaEntities(multimedia),
         );
-        
+
   factory ArticleModel.fromJson(Map<String, dynamic> json) =>
       _$ArticleModelFromJson(json);
   Map<String, dynamic> toJson() => _$ArticleModelToJson(this);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/features/daily_news/data/data_sources/local/cached_datasorce.dart';
+import 'package:news_app/features/daily_news/presentation/pages/local_stories_view.dart';
 import 'package:news_app/features/daily_news/presentation/providers/general_providers.dart';
 import 'package:news_app/injection_container.dart';
 
@@ -44,6 +45,12 @@ class HomeAppBarWidget extends ConsumerWidget {
             FocusScope.of(context).unfocus();
             switch (value) {
               case 'SavedArticles':
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocalStoriesView(),
+                  ),
+                );
                 break;
               case 'ViewAs':
                 ref.read(viewAsCardsProvider.notifier).state = !viewAsGrid;

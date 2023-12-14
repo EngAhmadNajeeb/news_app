@@ -1,6 +1,7 @@
-import 'package:news_app/core/constants/constants.dart';
+import 'package:news_app/features/daily_news/data/data_sources/local/cached_datasorce.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/presentation/providers/general_providers.dart';
+import 'package:news_app/injection_container.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'articles_provider.g.dart';
 
@@ -10,7 +11,7 @@ class ArticleNotifier extends _$ArticleNotifier {
   var _keyword = '';
   @override
   Future<List<ArticleEntity>> build() async {
-    return getData(params: kHome);
+    return getData(params: sl<ChachedDatasource>().getSelectedSection());
   }
 
   void searchFilter(String keyword) async {
@@ -49,6 +50,8 @@ class ArticleNotifier extends _$ArticleNotifier {
   Future<void> refreshData(String section) async {
     state = const AsyncValue.loading();
     try {
+      await ref.read(removeSetionArticlesFromCacheUseCaseProvider)(
+          params: section);
       state = AsyncValue.data(await getData(params: section));
       searchFilter(_keyword);
     } catch (error, stackTrace) {

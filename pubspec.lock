@@ -257,6 +257,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cryptography:
+    dependency: transitive
+    description:
+      name: cryptography
+      sha256: d146b76d33d94548cf035233fbc2f4338c1242fa119013bead807d033fc4ae05
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -266,7 +274,7 @@ packages:
     source: hosted
     version: "1.0.6"
   custom_lint:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: custom_lint
       sha256: "198ec6b8e084d22f508a76556c9afcfb71706ad3f42b083fe0ee923351a96d90"
@@ -353,6 +361,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  flat_buffers:
+    dependency: transitive
+    description:
+      name: flat_buffers
+      sha256: "23e2ced0d8e8ecdffbd9f267f49a668c74438393b9acaeac1c724123e3764263"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -408,6 +424,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      sha256: dfdde255317af381bfc1c486ed968d5a43a2ded9c931e87cbecd88767d6a71c1
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.2.4"
   freezed_annotation:
     dependency: transitive
     description:
@@ -592,6 +616,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  objectbox:
+    dependency: "direct main"
+    description:
+      name: objectbox
+      sha256: "949747f51e9cf6063ccc820e0a3a1f5f1d4d1530cde62663d7c883a38738d895"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+  objectbox_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: objectbox_flutter_libs
+      sha256: "88e44800d6d5864fb99b483ebabbd9bbff0fa6a7eb448de86a94db501010368d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+  objectbox_generator:
+    dependency: "direct dev"
+    description:
+      name: objectbox_generator
+      sha256: "8e9e5be6f56a22dbe54491d64bdb57a510de525109ce3481b7a0e72b6d8e04d9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   octo_image:
     dependency: transitive
     description:
@@ -609,7 +657,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
@@ -617,7 +665,7 @@ packages:
     source: hosted
     version: "1.8.3"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: a1aa8aaa2542a6bc57e381f132af822420216c80d4781f7aa085ca3229208aaa

@@ -1,4 +1,3 @@
-
 import 'package:news_app/core/constants/constants.dart';
 
 class AppImages {

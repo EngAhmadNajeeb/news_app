@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/features/daily_news/data/data_sources/local/cached_datasorce.dart';
 import 'package:news_app/features/daily_news/presentation/providers/general_providers.dart';
+import 'package:news_app/injection_container.dart';
 
 class LocalArticlesAppbarWigdet extends ConsumerWidget {
   const LocalArticlesAppbarWigdet({
@@ -33,6 +35,7 @@ class LocalArticlesAppbarWigdet extends ConsumerWidget {
           InkWell(
             onTap: () {
               ref.read(viewAsCardsProvider.notifier).state = false;
+              sl<ChachedDatasource>().setViewAsCards(false);
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -48,6 +51,7 @@ class LocalArticlesAppbarWigdet extends ConsumerWidget {
           InkWell(
             onTap: () {
               ref.read(viewAsCardsProvider.notifier).state = true;
+              sl<ChachedDatasource>().setViewAsCards(true);
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.w),

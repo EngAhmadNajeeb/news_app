@@ -11,6 +11,7 @@ class ChooseSectionBottomSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final list = ref.watch(sectionsFilterNotifierProvider);
+    // final controle = Get.put(SectionViewModel());
 
     return SafeArea(
       child: Container(

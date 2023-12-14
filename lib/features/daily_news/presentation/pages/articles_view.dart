@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/presentation/empty_data_widget.dart';
 import 'package:news_app/core/presentation/error_widget.dart';
 import 'package:news_app/core/presentation/loader_widget.dart';
+import 'package:news_app/features/daily_news/data/data_sources/local/cached_datasorce.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/presentation/bottom_sheets/app_bottom_sheets.dart';
 import 'package:news_app/features/daily_news/presentation/providers/articles_provider.dart';
@@ -11,6 +12,7 @@ import 'package:news_app/features/daily_news/presentation/providers/general_prov
 import 'package:news_app/features/daily_news/presentation/widgets/grid_item.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/home_appbar.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/list_item.dart';
+import 'package:news_app/injection_container.dart';
 
 class ArticlesView extends ConsumerWidget {
   const ArticlesView({super.key});
@@ -44,6 +46,7 @@ class ArticlesView extends ConsumerWidget {
                             section) {
                       ref.read(selectedSectionProvider.notifier).state =
                           section;
+                      sl<ChachedDatasource>().setSelectedSection(section);
                       ref
                           .read(articleNotifierProvider.notifier)
                           .swichSection(section);

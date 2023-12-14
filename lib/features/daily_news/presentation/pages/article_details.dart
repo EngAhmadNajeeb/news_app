@@ -6,6 +6,7 @@ import 'package:news_app/core/presentation/image_view.dart';
 import 'package:news_app/core/util/date_helper.dart';
 import 'package:news_app/core/util/general_function.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
+import 'package:news_app/features/daily_news/presentation/providers/general_providers.dart';
 
 class ArticleDetails extends ConsumerStatefulWidget {
   final ArticleEntity model;
@@ -19,11 +20,19 @@ class _ArticleDetailsState extends ConsumerState<ArticleDetails> {
   @override
   void initState() {
     super.initState();
+    getState();
   }
 
+  getState() async {
+    ref.read(isArticleInArchiveProvider.notifier).state = (ref
+            .read(checkInArchiveUseCaseProvider)
+            .call(params: widget.model.aTitle)) !=
+        null;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isInArticle = ref.watch(isArticleInArchiveProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.model.aTitle)),
@@ -116,10 +125,24 @@ class _ArticleDetailsState extends ConsumerState<ArticleDetails> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-   
+          if (isInArticle) {
+            bool isRemoved = ref
+                .read(removeLocalArticleUseCaseProvider)
+                .call(params: widget.model);
+            if (isRemoved) {
+              ref.read(isArticleInArchiveProvider.notifier).state = false;
+            }
+          } else {
+            bool isAdded = ref
+                .read(saveLocalArticleUseCaseProvider)
+                .call(params: widget.model);
+            if (isAdded) {
+              ref.read(isArticleInArchiveProvider.notifier).state = true;
+            }
+          }
         },
         child: Icon(
-          Icons.bookmark,
+          isInArticle ? Icons.bookmark : Icons.bookmark_add_outlined,
           size: 40.r,
         ),
       ),
