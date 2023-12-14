@@ -39,7 +39,7 @@ class ListItemCard extends StatelessWidget {
                           start: Radius.circular(10.r)),
                       width: MediaQuery.of(context).size.width / 3,
                       height: double.infinity,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                     SizedBox(width: 10.w),
                     Expanded(
