@@ -1,17 +1,17 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:news_app/core/constants/constants.dart';
+import 'package:news_app/features/daily_news/data/data_sources/local/cached_datasorce.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/domain/use_cases/get_article.dart';
-import 'package:news_app/features/daily_news/domain/use_cases/remove_setion_articles_from_cache.dart';
 import 'package:news_app/features/daily_news/presentation/providers/articles_provider.dart';
 import 'package:news_app/features/daily_news/presentation/providers/general_providers.dart';
+import 'package:news_app/injection_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MockGetArticleUseCase extends Mock implements GetArticleUseCase {}
-
-class MockRemoveSetionArticlesFromCacheUseCase extends Mock
-    implements RemoveSetionArticlesFromCacheUseCase {}
 
 class Listener<T> extends Mock {
   void call(T? previous, T next);
@@ -47,10 +47,14 @@ List<ArticleEntity> articles = [
   )
 ];
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.setMockInitialValues({'SelectedSection': kHome});
+  var instance = await SharedPreferences.getInstance();
+  sl.registerSingleton(ChachedDatasource(sharedPreferences: instance));
+
   late MockGetArticleUseCase mockGetArticleUseCase;
-  late MockRemoveSetionArticlesFromCacheUseCase
-      mockRemoveSetionArticlesFromCacheUseCase;
+
   late ProviderContainer container;
   late Listener listener;
   var data = AsyncData<List<ArticleEntity>>(articles);
@@ -58,25 +62,15 @@ void main() {
 
   setUp(() {
     mockGetArticleUseCase = MockGetArticleUseCase();
-    mockRemoveSetionArticlesFromCacheUseCase =
-        MockRemoveSetionArticlesFromCacheUseCase();
     listener = Listener<AsyncValue>();
     container = createContainer(overrides: [
       getArticleUseCaseProvider.overrideWith((ref) {
         return mockGetArticleUseCase;
       }),
-      removeSetionArticlesFromCacheUseCaseProvider.overrideWith((ref) {
-        return mockRemoveSetionArticlesFromCacheUseCase;
-      }),
-      selectedSectionProvider.overrideWith((ref) {
-        return kHome;
-      }),
     ]);
     // listen to the provider and call [listener] whenever its value changes
-    when(() => mockGetArticleUseCase.call(params: section))
+    when(() => mockGetArticleUseCase.call(params: kHome))
         .thenAnswer((_) async => articles);
-    when(() => mockRemoveSetionArticlesFromCacheUseCase.call(params: section))
-        .thenAnswer((_) async => true);
     container.listen(
       articleNotifierProvider,
       listener,
