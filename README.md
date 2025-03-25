@@ -1,20 +1,62 @@
-# news_app
+# 📲 News App
 
-This is the news flutter application with api powered by [nytimes.com](https://developer.nytimes.com/apis).<br/>
-This application creating in cleane architecture and contains more performance dependencies like [Riverpod](https://riverpod.dev/), [Retrofit]([https://riverpod.dev/](https://pub.dev/packages/retrofit)) and [GetIt](https://pub.dev/packages/get_it), it is also store the articles in two-way caching and local database by using [ObjectBox](https://objectbox.io/) ORM library.<br/>
-The application is covered by tests.
+A Flutter-powered news application leveraging the [New York Times API](https://developer.nytimes.com/apis) to deliver the latest news with smooth performance and an intuitive UI.
 
-  <br/>
+## 🚀 Features
 
-## Screenshots (Dark mode)
+- **Clean Architecture**: Structured codebase for maintainability and scalability.
+- **State Management**: Powered by [Riverpod](https://riverpod.dev/) for efficient state handling.
+- **API Integration**: Uses [Retrofit](https://pub.dev/packages/retrofit) for seamless API calls.
+- **Dependency Injection**: Managed via [GetIt](https://pub.dev/packages/get_it) for cleaner code.
+- **Offline Support**: Articles are cached locally using [ObjectBox](https://objectbox.io/) for quick access.
+- **Comprehensive Testing**: Ensures reliability and stability.
 
-Home screen                   | Article Detail Screen       |  Section View    |  Stored Articles
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/1.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/2.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/3.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/4.jpg?raw=true)
+---
 
-## Screenshots (Light mode)
+## 🌙 Screenshots (Dark Mode)
 
-Home screen            |   Article Detail Screen       |  Section View       |  Stored Articles
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/5.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/6.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/7.jpg?raw=true)|![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/8.jpg?raw=true)
+| Home Screen | Article Detail | Section View | Saved Articles |
+|:-----------:|:--------------:|:------------:|:--------------:|
+| ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/1.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/2.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/3.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/4.jpg?raw=true) |
+
+## ☀️ Screenshots (Light Mode)
+
+| Home Screen | Article Detail | Section View | Saved Articles |
+|:-----------:|:--------------:|:------------:|:--------------:|
+| ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/5.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/6.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/7.jpg?raw=true) | ![](https://github.com/EngAhmadNajeeb/news_app/blob/master/screenshots/8.jpg?raw=true) |
+
+---
+
+## 🔧 Installation
+
+1. Clone the repo:
+    ```bash
+    git clone https://github.com/EngAhmadNajeeb/news_app.git
+    ```
+2. Get dependencies:
+    ```bash
+    flutter pub get
+    ```
+3. Run the app:
+    ```bash
+    flutter run
+    ```
+
+---
+
+## 🔥 Future Enhancements
+
+- **Push Notifications** for breaking news.
+- **User Authentication** to personalize content.
+- **Bookmark Sync** across multiple devices.
+
+---
+
+## 👨‍💻 Author
+
+**[Eng Ahmad Najeeb](https://github.com/EngAhmadNajeeb)**
+
+---
+
+⭐ If you like this project, don't forget to give it a star!
 
