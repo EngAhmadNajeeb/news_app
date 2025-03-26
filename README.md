@@ -54,7 +54,7 @@ A Flutter-powered news application leveraging the [New York Times API](https://d
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
