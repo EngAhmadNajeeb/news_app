@@ -52,11 +52,13 @@ A Flutter-powered news application leveraging the [New York Times API](https://d
 
 ---
 
-## 👨‍💻 Author
+## License
 
-**[Eng Ahmad Najeeb](https://github.com/EngAhmadNajeeb)**
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
+
+Made with ❤️ by [Eng Ahmad Najeeb](https://github.com/EngAhmadNajeeb)
 
 ⭐ If you like this project, don't forget to give it a star!
 
